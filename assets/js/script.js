@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -34,21 +34,41 @@ function runGame(gameType) {
 
 // Die Funktion checkAnswer sorgt dafür, dass das Ergebnis überprüft wird
 function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
 
+    if (isCorrect) {
+        alert("Hey! You got it right!")
+    } else {
+        alert(`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
 }
 
 // Die Funktion calculateCorrectAnswer sorgt dafür, dass das richtige Ergebnis angezeigt wird
 function calculateCorrectAnswer() {
+    //Hiermit werden die Zahlen und Operatoren analysiert! Du nutzt parseInt weil eine Zahl analysiert wird, kein Text
+    let operand1 = parseInt(document.getElementById("operand1").innerText);
+    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    let operator = document.getElementById("operator").innerText;
+
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
+    }
+}
+
+// Die Funktion incrementScore sorgt dafür, dass  die richigen Antworten Score hochgesetzt wird
+function incrementScore() {
 
 }
 
-// Die Funktion calculateCorrectAnswer sorgt dafür, dass  die richigen Antworten Score hochgesetzt wird
-function calculateCorrectAnswer() {
-
-}
-
-// Die Funktion calculateCorrectAnswer sorgt dafür, dass der falschen Antworten Score hochgeht
-function calculateCorrectAnswer() {
+// Die Funktion incrementWrongAnswer sorgt dafür, dass der falschen Antworten Score hochgeht
+function incrementWrongAnswer() {
 
 }
 
@@ -59,12 +79,12 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById("operator").textContent = "+";
 }
 
-// Die Funktion calculateCorrectAnswer sorgt dafür, dass dass Minus Fragen angezeigt werden
-function calculateCorrectAnswer() {
+// Die Funktion displaySubtractQuestion sorgt dafür, dass dass Minus Fragen angezeigt werden
+function displaySubtractQuestion() {
 
 }
 
-// Die Funktion calculateCorrectAnswer sorgt dafür, dass dass Mal Fragen angezeigt werden
-function calculateCorrectAnswer() {
+// Die Funktion displayMultiplyQuestion sorgt dafür, dass dass Mal Fragen angezeigt werden
+function displayMultiplyQuestion() {
 
 }
