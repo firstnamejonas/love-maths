@@ -111,6 +111,15 @@ body {
     transition: all 0.5s;
 }
 
+.btn--big::after {
+    /*With content you can now show the content within the data-type attribute, they function as labels*/
+    content: attr(data-type);
+    font-size: 1rem;
+    color: #445361;
+    position: relative;
+    left: -0.5rem;
+}
+
 .btn--blue {
     border-color: blue;
     color: blue;
