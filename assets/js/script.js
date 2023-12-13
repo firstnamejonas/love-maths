@@ -1,3 +1,19 @@
+// Event-Listeners einfügen (Funktionen die ausgeführt werden, wenn ein Event eintritt)
+document.addEventListener("DOMContentLoaded", function() {
+    let buttons = document.getElementsByTagName("button");
+
+    for (let button of buttons) {
+        button.addEventListener("click", function() {
+            if (this.getAttribute("data-type") === "submit") {
+                alert("You clicked Submit!");
+            } else {
+                let gameType = this.getAttribute("data-type");
+                alert(`You clicked ${gameType}`);
+            }
+        });
+    }
+});
+
 // Die Funktion runGame sorgt dafür, dass das Game läuft sobald ein User auf die Seite kommt!
 function runGame() {
 
