@@ -8,18 +8,28 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("You clicked Submit!");
             } else {
                 let gameType = this.getAttribute("data-type");
-                alert(`You clicked ${gameType}`);
+                runGame(gameType);
             }
         });
     }
+    // wenn die Seite geladen ist, spielt man zuerst das Addition Game
+    runGame("addition")
+
 });
 
 // Die Funktion runGame sorgt dafür, dass das Game läuft sobald ein User auf die Seite kommt!
-function runGame() {
+function runGame(gameType) {
     
     // kreiert 2 random Zahlen zwischen 1 & 25
-    let num1 = Math.floor (Math.random () +15) +1;
-    let num2 = Math.floor (Math.random () +15) +1;
+    let num1 = Math.floor (Math.random () *25) +1;
+    let num2 = Math.floor (Math.random () *25) +1;
+
+    if (gameType === "addition") {
+        displayAdditionQuestion(num1, num2)
+    } else {
+        alert(`Unknown game type: ${gameType}`);
+        throw `Unknown game type: ${gameType}. Aborting!`;
+    }
 }
 
 // Die Funktion checkAnswer sorgt dafür, dass das Ergebnis überprüft wird
@@ -42,9 +52,11 @@ function calculateCorrectAnswer() {
 
 }
 
-// Die Funktion calculateCorrectAnswer sorgt dafür, dass Plus Fragen angezeigt werden
-function calculateCorrectAnswer() {
-
+// Die Funktion displayAdditionQuestion sorgt dafür, dass Plus Fragen angezeigt werden
+function displayAdditionQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "+";
 }
 
 // Die Funktion calculateCorrectAnswer sorgt dafür, dass dass Minus Fragen angezeigt werden
