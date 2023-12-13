@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Die Funktion runGame sorgt dafür, dass das Game läuft sobald ein User auf die Seite kommt!
 function runGame() {
-
+    
+    // kreiert 2 random Zahlen zwischen 1 & 25
+    let num1 = Math.floor (Math.random () +15) +1;
+    let num2 = Math.floor (Math.random () +15) +1;
 }
 
 // Die Funktion checkAnswer sorgt dafür, dass das Ergebnis überprüft wird
