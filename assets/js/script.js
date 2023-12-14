@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
     // wenn die Seite geladen ist, spielt man zuerst das Addition Game
     runGame("addition")
 
@@ -19,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Die Funktion runGame sorgt dafür, dass das Game läuft sobald ein User auf die Seite kommt!
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
 
     // kreiert 2 random Zahlen zwischen 1 & 25
     let num1 = Math.floor(Math.random() * 25) + 1;
