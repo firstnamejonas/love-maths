@@ -1,9 +1,9 @@
 // Event-Listeners einfügen (Funktionen die ausgeführt werden, wenn ein Event eintritt)
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "submit") {
                 checkAnswer();
             } else {
@@ -19,13 +19,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Die Funktion runGame sorgt dafür, dass das Game läuft sobald ein User auf die Seite kommt!
 function runGame(gameType) {
-    
+
     // kreiert 2 random Zahlen zwischen 1 & 25
-    let num1 = Math.floor (Math.random () *25) +1;
-    let num2 = Math.floor (Math.random () *25) +1;
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2)
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2)
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -58,6 +60,8 @@ function calculateCorrectAnswer() {
 
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -67,16 +71,16 @@ function calculateCorrectAnswer() {
 // Die Funktion incrementScore sorgt dafür, dass  die richigen Antworten Score hochgesetzt wird
 function incrementScore() {
 
-        let oldScore = parseInt(document.getElementById("score").innerText)
-        document.getElementById("score").innerText = ++oldScore;
+    let oldScore = parseInt(document.getElementById("score").innerText)
+    document.getElementById("score").innerText = ++oldScore;
 
 }
 
 // Die Funktion incrementWrongAnswer sorgt dafür, dass der falschen Antworten Score hochgeht
 function incrementWrongAnswer() {
 
-        let oldScore = parseInt(document.getElementById("incorrect").innerText)
-        document.getElementById("incorrect").innerText = ++oldScore;
+    let oldScore = parseInt(document.getElementById("incorrect").innerText)
+    document.getElementById("incorrect").innerText = ++oldScore;
 
 }
 
@@ -93,6 +97,8 @@ function displaySubtractQuestion() {
 }
 
 // Die Funktion displayMultiplyQuestion sorgt dafür, dass dass Mal Fragen angezeigt werden
-function displayMultiplyQuestion() {
-
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "x";
 }
