@@ -40,7 +40,9 @@ function runGame(gameType) {
         displayMultiplyQuestion(num1, num2)
     } else if (gameType === "subtract") {
         displaySubtractQuestion(num1, num2)
-    } else {
+    } else if (gameType === "division") {
+        displayDivisionQuestion(num1, num2)
+    }else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
@@ -76,6 +78,8 @@ function calculateCorrectAnswer() {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
+    } else if (operator === ":") {
+        return [operand1 / operand2, "division"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -117,4 +121,21 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById("operand1").textContent = operand1;
     document.getElementById("operand2").textContent = operand2;
     document.getElementById("operator").textContent = "x";
+}
+
+// Die Funktion displayDivisionQuestion sorgt dafür, dass dass Minus Fragen angezeigt werden
+function displayDivisionQuestion(operand1, operand2) {
+    // Stelle sicher, dass operand1 mindestens das Dreifache von operand2 ist
+    operand1 = Math.max(operand1, operand2 * 3);
+
+    // Finde eine zufällige Anzahl von Vielfachen von operand2, die kleiner oder gleich operand1 sind
+    let randomMultiples = Math.floor(Math.random() * 5) + 1; // Hier 5 ist die maximale Anzahl von Vielfachen, du kannst dies anpassen
+
+    // Wähle eines der zufälligen Vielfachen aus
+    operand1 = Math.floor(operand1 / operand2) * operand2 * randomMultiples;
+
+    // Zeige die Zahlen und den Operator an
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = ":";
 }
